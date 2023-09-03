@@ -15,3 +15,7 @@ const io = new Server(server, {
     methods: ['GET', 'POST'],
   },
 })
+
+server.listen(3001, () => {
+  console.log('server is running on port 3001')
+})
