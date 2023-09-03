@@ -16,6 +16,18 @@ const io = new Server(server, {
   },
 })
 
+io.on('connection', (socket) => {
+  console.log(`user connected with: ${socket.id}`)
+
+  socket.on('join_room', (data) => {
+    socket.join(data)
+  })
+
+  socket.on('send-message', (data) => {
+    socket.to(data.room).emit('receive_message', data)
+  })
+})
+
 server.listen(3001, () => {
   console.log('server is running on port 3001')
 })
