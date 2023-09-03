@@ -24,7 +24,8 @@ io.on('connection', (socket) => {
   })
 
   socket.on('send-message', (data) => {
-    socket.to(data.room).emit('receive_message', data)
+    socket.to(data.room).emit('receive_message', data.message, data.own)
+    socket.emit('show_message', data.message, data.own)
   })
 })
 
